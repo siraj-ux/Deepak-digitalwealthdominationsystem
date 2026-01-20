@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+html, body {
+  overflow-x: hidden;
+}
+
+@layer base {
+  :root {
+    /* Nature-inspired Luxury Palette */
+    --emerald-dark: 165 25% 17%;     /* #284139 - Emerald Green */
+    --wasabi: 80 12% 51%;            /* #809076 - Wasabi */
+    --khaki-light: 43 92% 78%;       /* #FBD794 - Creased Khaki */
+    --earth: 21 56% 46%;             /* #B86830 - Egyptian Earth */
+    --noir: 166 26% 8%;              /* #111A19 - Noir de Vigne */
+    
+    /* Semantic Tokens */
+    --background: 0 0% 100%;
+    --foreground: 166 26% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 166 26% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 166 26% 8%;
+
+    --primary: 165 25% 17%;          /* Emerald Dark */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 43 92% 78%;         /* Khaki Light */
+    --secondary-foreground: 166 26% 8%;
+
+    --muted: 80 12% 51%;             /* Wasabi */
+    --muted-foreground: 166 26% 8%;
+
+    --accent: 21 56% 46%;            /* Earth */
+    --accent-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 80 12% 85%;
+    --input: 80 12% 85%;
+    --ring: 165 25% 17%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--emerald-dark)), hsl(var(--noir)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--earth)), hsl(var(--khaki-light)));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--emerald-dark) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--khaki-light) / 0.4);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
