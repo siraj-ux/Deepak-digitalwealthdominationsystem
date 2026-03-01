@@ -13,6 +13,13 @@ const DontJoinIf = lazy(() => import("@/components/DontJoinIf"));
 const LearningOutcomes = lazy(() => import("@/components/LearningOutcomes"));
 const MeetCoach = lazy(() => import("@/components/MeetCoach"));
 const StickyEnrollBar = lazy(() => import("@/components/StickyEnrollBar"));
+const PeopleHeMet = lazy(() => import("@/components/PeopleHeMet"));
+const FilmProduction = lazy(() => import("@/components/FilmProduction"));
+
+const WhatIsDWD = lazy(() => import("@/components/WhatIsDWD"));
+const DeepakSuccess = lazy(() => import("@/components/DeepakSuccess"));
+const ClientResultsVideo = lazy(() => import("@/components/ClientResultsVideo"));
+
 
 const FAQSection = lazy(() =>
   import("@/components/Faq").then((m) => ({ default: m.FAQSection }))
@@ -66,6 +73,14 @@ const Index = () => {
         <Suspense
           fallback={<div className="min-h-[200px]" aria-hidden="true" />}
         >
+
+          <PeopleHeMet />
+          <FilmProduction />
+
+          <WhatIsDWD />
+          {/* <DeepakSuccess /> */}
+          <ClientResultsVideo />
+      
           <AboutInstructor />
           <WorkshopContent />
           <LifeChanges />
