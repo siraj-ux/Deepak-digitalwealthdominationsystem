@@ -3,27 +3,41 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const ClientResultsVideo = () => {
   const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // Set to true by default since it will autoplay
+  const [isPlaying, setIsPlaying] = useState(true);
 
-  // 1. Automatically pause video when scrolling away
+  // 1. Handle Intersection and Autoplay initialization
   useEffect(() => {
+    // Force play on mount (in case autoPlay attribute is delayed)
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Autoplay prevented by browser:", error);
+        setIsPlaying(false);
+      });
+    }
+
     const options = { threshold: 0.2 };
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting && videoRef.current && !videoRef.current.paused) {
           videoRef.current.pause();
+          setIsPlaying(false);
+        } else if (entry.isIntersecting && videoRef.current && videoRef.current.paused) {
+          // Optional: Resume playing when scrolled back into view
+          videoRef.current.play().catch(() => {});
+          setIsPlaying(true);
         }
       });
     };
 
     const observer = new IntersectionObserver(handleIntersection, options);
     if (videoRef.current) observer.observe(videoRef.current);
+    
     return () => {
       if (videoRef.current) observer.unobserve(videoRef.current);
     };
   }, []);
 
-  // 2. Optimized Play Logic
   const handlePlayAction = () => {
     if (videoRef.current) {
       if (videoRef.current.paused) {
@@ -38,7 +52,6 @@ const ClientResultsVideo = () => {
 
   return (
     <section className="py-12 md:py-16 bg-gradient-to-b from-white to-muted/20 overflow-hidden relative border-y border-border/40">
-      {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-accent/5 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -63,7 +76,6 @@ const ClientResultsVideo = () => {
         </div>
 
         <div className="max-w-3xl mx-auto relative group">
-          {/* Backdrop 10X */}
           <div className="absolute -top-10 md:-top-16 left-1/2 -translate-x-1/2 select-none opacity-[0.05] z-0">
              <span className="font-montserrat font-black text-[clamp(8rem,20vw,16rem)] text-noir uppercase">10X</span>
           </div>
@@ -77,7 +89,6 @@ const ClientResultsVideo = () => {
           >
             <div className="relative bg-noir rounded-[1.4rem] md:rounded-[1.9rem] overflow-hidden aspect-video">
               
-              {/* SINGLE CENTERED PLAY BUTTON: Only shows when not playing */}
               <AnimatePresence>
                 {!isPlaying && (
                   <motion.div 
@@ -91,7 +102,6 @@ const ClientResultsVideo = () => {
                         whileTap={{ scale: 0.9 }}
                         className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center shadow-2xl"
                      >
-                        {/* Play Icon Triangle */}
                         <div className="w-0 h-0 border-t-[12px] md:border-t-[15px] border-t-transparent border-l-[20px] md:border-l-[25px] border-l-noir border-b-[12px] md:border-b-[15px] border-b-transparent ml-2"></div>
                      </motion.div>
                   </motion.div>
@@ -100,17 +110,16 @@ const ClientResultsVideo = () => {
 
               <video 
                 ref={videoRef}
-                /* 
-                   CRITICAL: Only show controls when playing. 
-                   This prevents the browser from showing its own play button on top of ours.
-                */
+                autoPlay 
+                muted 
+                loop
+                playsInline
                 controls={isPlaying} 
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onEnded={() => setIsPlaying(false)}
                 className="w-full h-full object-cover block relative z-10"
                 poster="/video-thumbnail.jpg" 
-                playsInline
               >
                 <source src="/video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.

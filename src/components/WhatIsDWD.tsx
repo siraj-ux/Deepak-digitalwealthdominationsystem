@@ -41,9 +41,7 @@ const WhatIsDWD = () => {
               <p className="font-poppins text-foreground/90 text-lg md:text-xl font-light leading-relaxed border-l-4 border-accent pl-6">
                 Digital Wealth Domination is the <strong>Blueprint for the New Financial Frontier.</strong> Master the high-growth assets that the traditional banking system doesn't want you to understand.
               </p>
-              <p className="font-poppins text-foreground/70 text-base md:text-lg leading-relaxed italic">
-                "In a space where 'experts' disappear overnight, Deepak brings nearly a decade of skin-in-the-game experience. He doesn't just track the markets; he dominates them. This program is the distillation of 7 years of wins, losses, and the exact strategies used to stay ahead of the curve in Crypto, DeFi, and beyond."
-              </p>
+              {/* Removed the 'Experts disappear overnight' paragraph from here */}
             </motion.div>
           </div>
 

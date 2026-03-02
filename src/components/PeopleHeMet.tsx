@@ -29,10 +29,6 @@ const PeopleHeMet = () => {
       {/* 2. Scrolling Container */}
       <div className="relative w-full overflow-hidden">
         <div className="flex w-max animate-scroll">
-          {/* 
-             ADDED: pr-6 (mobile) and md:pr-20 (desktop) 
-             This creates the "join" space without breaking the loop logic
-          */}
           <img
             src="/new-images/people-he-met.png"
             alt="People met in journey"
@@ -47,8 +43,8 @@ const PeopleHeMet = () => {
         </div>
       </div>
 
-      {/* 3. Animation CSS */}
-      <style jsx>{`
+      {/* FIXED: Removed 'jsx' attribute */}
+      <style>{`
         @keyframes scroll {
           0% {
             transform: translateX(0);
@@ -60,17 +56,13 @@ const PeopleHeMet = () => {
         
         .animate-scroll {
           display: flex;
-          animation: scroll 70s linear infinite;
+          animation: scroll 30s linear infinite;
         }
 
         @media (max-width: 768px) {
           .animate-scroll {
-            animation-duration: 35s;
+            animation-duration: 15s;
           }
-        }
-
-        .animate-scroll:hover {
-          animation-play-state: paused;
         }
       `}</style>
     </section>

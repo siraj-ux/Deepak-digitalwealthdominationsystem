@@ -73,23 +73,24 @@ const Index = () => {
         <Suspense
           fallback={<div className="min-h-[200px]" aria-hidden="true" />}
         >
-
+          <MeetCoach />
           <PeopleHeMet />
           <FilmProduction />
 
           <WhatIsDWD />
+          
           {/* <DeepakSuccess /> */}
           <ClientResultsVideo />
-      
+          <Testimonials />
           <AboutInstructor />
           <WorkshopContent />
           <LifeChanges />
-          <Testimonials />
+          
           <TargetAudience />
           <ValueProposition />
           <DontJoinIf />
           <LearningOutcomes />
-          <MeetCoach />
+          
 
           <FAQSection />
           <SiteFooter />

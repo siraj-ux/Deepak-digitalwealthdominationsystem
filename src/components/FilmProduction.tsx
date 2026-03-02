@@ -3,10 +3,7 @@ import { motion } from "framer-motion";
 
 const FilmProduction = () => {
   return (
-    /* Reduced vertical padding (py-12) and used matching dark gradient */
     <section className="py-12 bg-gradient-to-br from-noir to-primary overflow-hidden border-t border-white/5">
-      
-      {/* 1. Compact Creative Header Section */}
       <div className="container mx-auto px-4 mb-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -15,7 +12,6 @@ const FilmProduction = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="text-center relative z-10"
         >
-          {/* Scaled down artistic '06' */}
           <div className="relative mb-[-1.5rem]">
             <h1 
               className="font-montserrat font-black text-transparent leading-none select-none tracking-tighter
@@ -26,15 +22,11 @@ const FilmProduction = () => {
             </h1>
           </div>
 
-          {/* Description Text - Shorter vertical footprint */}
           <div className="max-w-4xl mx-auto">
             <h2 className="font-poppins text-white font-light text-[clamp(1rem,2.5vw,1.4rem)] leading-snug">
               Deepak, along with his father <span className="font-bold text-khaki italic">"Krishan Choudhary"</span>
             </h2>
-            
-            {/* Thinner, cleaner divider */}
             <div className="w-12 h-[1px] bg-khaki/40 mx-auto my-4"></div>
-
             <p className="font-poppins text-white/60 font-light text-[clamp(0.75rem,1.2vw,0.9rem)] uppercase tracking-[0.4em]">
               produced movies across the 
               <span className="text-white font-medium"> Marathi & Hindi </span> 
@@ -44,19 +36,13 @@ const FilmProduction = () => {
         </motion.div>
       </div>
 
-      {/* 2. Scrolling Image View - Reduced Height for better fit */}
       <div className="relative w-full overflow-hidden">
         <div className="flex w-max animate-film-scroll gap-5 pr-5">
-          {/* 
-             Changed h-[95vh] -> h-[45vh] on mobile / h-[60vh] on desktop.
-             This significantly reduces the total height of the section.
-          */}
           <img
             src="/new-images/films.png"
             alt="Film Productions"
             className="h-[45vh] md:h-[55vh] lg:h-[60vh] w-auto object-contain flex-shrink-0"
           />
-          {/* Duplicate for infinite loop */}
           <img
             src="/new-images/films.png"
             alt="Film Productions"
@@ -65,7 +51,8 @@ const FilmProduction = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      {/* FIXED: Removed 'jsx' and the backtick inside curly braces */}
+      <style>{`
         @keyframes filmScroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -73,18 +60,13 @@ const FilmProduction = () => {
         
         .animate-film-scroll {
           display: flex;
-          /* Slower cinematic crawl for high-end feel */
-          animation: filmScroll 55s linear infinite;
+          animation: filmScroll 30s linear infinite;
         }
 
         @media (max-width: 768px) {
           .animate-film-scroll {
-            animation-duration: 25s;
+            animation-duration: 15s;
           }
-        }
-
-        .animate-film-scroll:hover {
-          animation-play-state: paused;
         }
       `}</style>
     </section>
